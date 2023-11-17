@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import "./App.css";
 import EntriesSection from "./components/EntriesSection";
@@ -39,7 +39,9 @@ const initialEntries = [
 
 function App() {
   const [entries, setEntries] = useLocalStorageState("entries", { defaultValue: initialEntries });
-  const [filter, setFilter] = useState("all"); // "all" or "favorites"
+  const [filter, setFilter] = useLocalStorageState("filter", { defaultValue: "all" });
+  // difference to the user experience: the filter the user chooses, stays persistent
+  // const [filter, setFilter] = useState("all"); // "all" or "favorites"
 
   function handleAddEntry(newEntry) {
     const date = new Date().toLocaleDateString("en-us", {
